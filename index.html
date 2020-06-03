@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/index.css">
+  <title>Main Marvel Comics</title>
+</head>
+
+<body class="bg-secondary">
+
+  <div id="marvel-app" class="container">
+
+    <h1 class="text-center text-light">Main Marvel Comics</h1>
+
+    <div v-if="errored">
+      <p>Sorry, not able to retrieve this information at the moment, please try back later</p>
+    </div>
+
+    <div v-else>
+      <p class="text-center text-light" v-if="loading">Loading...</p>
+    </div>
+
+    <form>
+      <input type="text" placeholder="Search 4 a comic" value="result.title" class="form-control text-center" v-model="comicSearch" @click="show = false">
+
+      <button id="show-modal" @click="show = true" class="btn btn-dark btn-lg width:18rem">Search Comic</button>
+    </form>
+
+    <!-- <ul v-if="show" @close="show = false">
+      <li v-for="result in filteredComics" >
+          <h5 class="text-light">{{result}}</h5>
+          <div>
+             <p class="text-light">{{result.description}}</p>
+          </div>
+      </li>
+    </ul> -->
+
+    <!-- searchResults & Modal Box -->
+    <div v-for="result in filteredComics" > 
+      <h5>{{result.title}}</h5>
+      <button @click="modalAction()"  class="btn btn-dark btn-lg">Read more</button> 
+    </div>
+      
+    <div v-if="modal" class="bg-dark mh-100 w-100">
+      <div class="bg-light">
+        <p>{{result.description}}</p>
+        <button @click="modalAction()" class="btn btn-dark btn-lg">Close</button>
+      </div>
+    </div> 
+   
+
+    <ul class="bg-dark">
+      <li v-for="result in marvelResults">
+        <h5 class="text-light">{{result.title}}</h5>
+      </li>
+    </ul> 
+  </div> <!--end of container-->
+
+  <footer class="text-center">
+    <a href="http://marvel.com\">
+      Data provided by Marvel. © 2020 MARVEL
+    </a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="src/main.js"></script>
+</body>
+
+</html>
