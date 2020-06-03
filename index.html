@@ -44,7 +44,7 @@
     <div>
       <ul v-if="show">
         <li v-for="comics in filteredComics" class="result-list text-light">
-            {{comics.title}}
+            <div class="box"><h5>{{comics.title}}</h5></div>
             <div>
               <p class="text-light">{{comics.description}}</p>
             </div>
@@ -52,13 +52,13 @@
       </ul>
     </div>
     
-    <ul class="bg-dark">
+    <!-- <ul class="bg-dark">
       <li v-for="result in marvelResults">
         <div>
           <h5 class="text-light">{{result.title}}</h5>
         </div>
       </li>
-    </ul> 
+    </ul>  -->
   </div> 
 
   <footer class="text-center">
