@@ -18,48 +18,48 @@
     <h1 class="text-center text-light">Marvel Comics</h1>
 
     <div v-if="errored">
-      <p>Sorry, not able to retrieve this information at the moment, please try back later</p>
+      <p>Sorry, not able to retrieve this information 
+        at the moment, please try back later</p>
     </div>
 
     <div v-else>
       <p class="text-center text-light" v-if="loading">Loading...</p>
     </div>
 
-    <form>
-      <input type="text" placeholder="Search 4 a Comic" value="result.title" class="form-control text-center" v-model="comicSearch">
+    <form class="center">
+      <input type="text" 
+      placeholder="Search 4 a Comic" 
+      value="result.title" 
+      class="form-control text-center" 
+      v-model="comicSearch">
 
-      <button id="show-modal" @click="show = true" class="btn btn-dark btn-lg width:18rem">Search Comic</button>
+      <button 
+      v-if="show" v-on:keyup.page-down="searchAction()" 
+      class="btn btn-dark btn-lg width:18rem"
+      >
+      Search Comic
+     </button>
     </form>
-
-    <ul v-if="show" @close="show = false">
-      <li v-for="result in filteredComics" class="text-light">
-          {{result.title}}
-          <div>
-             <p class="text-light">{{result.description}}</p>
-          </div>
-      </li>
-    </ul>
-
-    <!-- searchResults & Modal Box -->
-    <!-- <div v-for="result in filteredComics" > 
-      <h5>{{result.title}}</h5>
-      <button @click="modalAction()"  class="btn btn-dark btn-lg">Read more</button> 
+    
+    <div>
+      <ul v-if="show">
+        <li v-for="comics in filteredComics" class="result-list text-light">
+            {{comics.title}}
+            <div>
+              <p class="text-light">{{comics.description}}</p>
+            </div>
+        </li>
+      </ul>
     </div>
-      
-    <div v-if="modal" class="bg-dark mh-100 w-100">
-      <div class="bg-light">
-        <p>{{result.description}}</p>
-        <button @click="modalAction()" class="btn btn-dark btn-lg">Close</button>
-      </div>
-    </div>  -->
-   
-
+    
     <ul class="bg-dark">
       <li v-for="result in marvelResults">
-        <h5 class="text-light">{{result.title}}</h5>
+        <div>
+          <h5 class="text-light">{{result.title}}</h5>
+        </div>
       </li>
     </ul> 
-  </div> <!--end of container-->
+  </div> 
 
   <footer class="text-center">
     <a href="http://marvel.com\">
@@ -67,7 +67,6 @@
     </a>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="src/main.js"></script>
 </body>

@@ -11,8 +11,9 @@ const app = new Vue({
       marvelResults:[],
       loading: true,
       errored: false,
-      show: false,
+      show: true,
       modal: false,
+      comics: false,
 
     }
     
@@ -27,15 +28,23 @@ const app = new Vue({
         this.modal = false
       }
     }, 
-
-    hideResult(){
-      if (this.show == false ){
+   searchAction(){
+      if (this.show == false) {
+        this.show = false
+      } else if (this.show == false) {
         this.show = true
       } else {
-        this.show = false
+        this.show = true
       }
-    }
-  
+    } ,
+
+    // openSearch() {
+    //   slider.showResult = true
+    // },
+    // closeSearch() {
+    //   slider.showResult = false
+    // }
+
 },
 
   mounted() {
@@ -61,24 +70,13 @@ const app = new Vue({
     .then(response => {
       this.marvelResults = response.data.results;
       console.log(this.marvelResults)
-  })    .catch(error => {
-    console.log(error)
-    this.errored = true
   })
-  .finally(() => this.loading = false)
-
-
 
   // till modal box på något vis med ${comicId}
 
  /*
-comicId = this.comicId
-
-   fetch(`https://gateway.marvel.com/v1/public/comics/${comicsId}?ts=1&apikey=ef29af83e248deb9ad49fb90cccc912e&hash=2d1959e3a52bc4f68a0be966394966b9`)
-
-comicId = this.comicId
-
- fetch(`https://gateway.marvel.com/v1/public/comics/2550?ts=1&apikey=ef29af83e248deb9ad49fb90cccc912e&hash=2d1959e3a52bc4f68a0be966394966b9`)
+  comicId = this.comicId
+ fetch(`https://gateway.marvel.com/v1/public/comics/11?ts=1&apikey=ef29af83e248deb9ad49fb90cccc912e&hash=2d1959e3a52bc4f68a0be966394966b9`)
   .then(response => {
     return response.json();
   })
@@ -89,32 +87,17 @@ comicId = this.comicId
  },  
 
  computed: {
-
-  filteredComics(){
+   
+  filteredComics: function(){
       return this.searchResults.filter(comics => {
-      let searchResult = lowerComicsName.includes(lowerComicSearch);
-      let lowerComicSearch = this.comicSearch.toLowerCase();
-        if (searchResult) return comics.title;
-      return lowerComicsName.includes(lowerComicSearch),
-      console.log(filteredComics());
+        let lowerComicsName = comics.title.toLowerCase();
+        let lowerComicSearch = this.comicSearch.toLowerCase();
+        if (lowerComicsName.includes(lowerComicSearch)) {
+          console.log(comics);
+          return comics; 
+        }
     }) 
-    
   }
-  
-    // filteredComics(){
-    //       return this.searchResults.filter(comics => {
-    //       let lowerComicsName = comics.title.toLowerCase();
-    //       let lowerComicSearch = this.comicSearch.toLowerCase();
-    //       return lowerComicsName.includes(lowerComicSearch);
-    //   })
-    // }
-  }
-  
+
+}
 });
-
-
-
-
-
-
-    
