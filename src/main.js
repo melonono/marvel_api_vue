@@ -95,9 +95,10 @@ comicId = this.comicId
       let searchResult = lowerComicsName.includes(lowerComicSearch);
       let lowerComicSearch = this.comicSearch.toLowerCase();
         if (searchResult) return comics.title;
-      return lowerComicsName.includes(lowerComicSearch);
-  
+      return lowerComicsName.includes(lowerComicSearch),
+      console.log(filteredComics());
     }) 
+    
   }
   
     // filteredComics(){
@@ -108,6 +109,7 @@ comicId = this.comicId
     //   })
     // }
   }
+  
 });
 
 

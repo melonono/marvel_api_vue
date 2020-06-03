@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="images/favicon.ico" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="/styles/index.css">
+  <link rel="stylesheet" href="styles/index.css">
   <title>Main Marvel Comics</title>
 </head>
 
@@ -15,7 +15,7 @@
 
   <div id="marvel-app" class="container">
 
-    <h1 class="text-center text-light">Main Marvel Comics</h1>
+    <h1 class="text-center text-light">Marvel Comics</h1>
 
     <div v-if="errored">
       <p>Sorry, not able to retrieve this information at the moment, please try back later</p>
@@ -26,7 +26,7 @@
     </div>
 
     <form>
-      <input type="text" placeholder="Search 4 a comic" value="result.title" class="form-control text-center" v-model="comicSearch">
+      <input type="text" placeholder="Search 4 a Comic" value="result.title" class="form-control text-center" v-model="comicSearch">
 
       <button id="show-modal" @click="show = true" class="btn btn-dark btn-lg width:18rem">Search Comic</button>
     </form>
