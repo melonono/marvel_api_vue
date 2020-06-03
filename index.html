@@ -26,22 +26,22 @@
     </div>
 
     <form>
-      <input type="text" placeholder="Search 4 a comic" value="result.title" class="form-control text-center" v-model="comicSearch" @click="show = false">
+      <input type="text" placeholder="Search 4 a comic" value="result.title" class="form-control text-center" v-model="comicSearch">
 
       <button id="show-modal" @click="show = true" class="btn btn-dark btn-lg width:18rem">Search Comic</button>
     </form>
 
-    <!-- <ul v-if="show" @close="show = false">
-      <li v-for="result in filteredComics" >
-          <h5 class="text-light">{{result}}</h5>
+    <ul v-if="show" @close="show = false">
+      <li v-for="result in filteredComics" class="text-light">
+          {{result.title}}
           <div>
              <p class="text-light">{{result.description}}</p>
           </div>
       </li>
-    </ul> -->
+    </ul>
 
     <!-- searchResults & Modal Box -->
-    <div v-for="result in filteredComics" > 
+    <!-- <div v-for="result in filteredComics" > 
       <h5>{{result.title}}</h5>
       <button @click="modalAction()"  class="btn btn-dark btn-lg">Read more</button> 
     </div>
@@ -51,7 +51,7 @@
         <p>{{result.description}}</p>
         <button @click="modalAction()" class="btn btn-dark btn-lg">Close</button>
       </div>
-    </div> 
+    </div>  -->
    
 
     <ul class="bg-dark">
