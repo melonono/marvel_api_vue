@@ -1,72 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.0.1">
+  <title>Marvel Search</title>
   <link rel="shortcut icon" href="images/favicon.ico" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles/index.css">
-  <title>Main Marvel Comics</title>
+  <link href="index.css" rel="stylesheet">
 </head>
 
-<body class="bg-secondary">
+<body>
 
-  <div id="marvel-app" class="container">
+  <main id="marvel-app" role="main">
 
-    <h1 class="text-center text-light">Marvel Comics</h1>
-
-    <div v-if="errored">
-      <p>Sorry, not able to retrieve this information 
-        at the moment, please try back later</p>
-    </div>
-
-    <div v-else>
-      <p class="text-center text-light" v-if="loading">Loading...</p>
-    </div>
-
-    <form class="center">
-      <input type="text" 
-      placeholder="Search 4 a Comic" 
-      value="result.title" 
-      class="form-control text-center" 
-      v-model="comicSearch">
-
-      <button 
-      v-if="show" v-on:keyup.page-down="searchAction()" 
-      class="btn btn-dark btn-lg width:18rem"
-      >
-      Search Comic
-     </button>
-    </form>
-    
-    <div>
-      <ul v-if="show">
-        <li v-for="comics in filteredComics" class="result-list text-light">
-            <div class="box"><h5>{{comics.title}}</h5></div>
-            <div>
-              <p class="text-light">{{comics.description}}</p>
-            </div>
-        </li>
-      </ul>
-    </div>
-    
-    <!-- <ul class="bg-dark">
-      <li v-for="result in marvelResults">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3 text-center">Marvel Comics</h1>
+        <form class="d-flex flex-column justify-content-between align-items-center" style="height: 120px">
+          <input class="form-control text-center " placeholder="Search for a comic by number" type="search"
+            v-model="search">
+          <input class="btn btn-outline-success my-2 my-sm-0" type="button" @click="doSearch" value="search">
+        </form>
         <div>
-          <h5 class="text-light">{{result.title}}</h5>
-        </div>
-      </li>
-    </ul>  -->
-  </div> 
 
-  <footer class="text-center">
-    <a href="http://marvel.com\">
+          <div v-for="comic in comics">
+            <!-- <img :src="thumbnail.path.extention" :alt="...""> -->
+            <h2>{{comic.title}}</h2>
+            <p>{{comic.description}}</p>
+            <!-- <button class="btn btn-outline-success my-2 my-sm-0" @click="modalBox"> Read More</button> -->
+          </div>
+    <!-- <transition>
+            <div class="modal" v-bind:>
+
+              <p>{{comic.description}}</p>
+              <button class="button" @click="modalBox">
+                Close
+              </button>
+            </div>
+          </transition> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 " v-for="comic in comicList">
+          <h2>{{comic.title}}</h2>
+          <p>{{comic.description}}</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+    </div> <!-- /container -->
+
+  </main>
+
+  <footer class="container">
+    <a class="text-light" href="http://marvel.com\" target="_blank">
       Data provided by Marvel. © 2020 MARVEL
     </a>
   </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="src/main.js"></script>
 </body>
